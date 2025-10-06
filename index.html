@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mol-Fish | Vente de poissons rares et exotiques</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4faff;
+            color: #0f172a;
+        }
+
+        header {
+            background: linear-gradient(to right, #0ea5e9, #0284c7);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        header img {
+            width: 180px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        header h1 {
+            margin-top: 20px;
+            font-size: 2.8em;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .produits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 60px 5%;
+        }
+
+        .produit {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .produit:hover {
+            transform: translateY(-10px);
+        }
+
+        .produit img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .produit h3 {
+            padding: 15px;
+            font-size: 1.2em;
+            color: #1e293b;
+        }
+
+        .contact {
+            text-align: center;
+            background-color: #e0f2fe;
+            padding: 60px 20px;
+        }
+
+        .contact h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #0369a1;
+        }
+
+        .contact a {
+            background: #0284c7;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 40px;
+            font-size: 1.1em;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .contact a:hover {
+            background: #0369a1;
+        }
+
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer .socials a {
+            margin: 0 10px;
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        footer .socials a:hover {
+            color: #facc15;
+        }
+
+        footer p {
+            margin-top: 10px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://images.unsplash.com/photo-1611055037288-8e9cc46b8f95?auto=format&fit=crop&w=500&q=80" alt="Poisson rare Mol-Fish">
+        <h1>Mol-Fish</h1>
+        <p>Vente de poissons rares et exotiques – fraîcheur garantie 🐠</p>
+    </header>
+
+    <section class="produits">
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9b?auto=format&fit=crop&w=500&q=80" alt="Poisson exotique 1">
+            <h3>Poisson Mandarinfish</h3>
+        </div>
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1615194942641-df9e0e5310cb?auto=format&fit=crop&w=500&q=80" alt="Poisson exotique 2">
+            <h3>Poisson-Clown Exotique</h3>
+        </div>
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1620662737697-5e04a6abeb6f?auto=format&fit=crop&w=500&q=80" alt="Poisson exotique 3">
+            <h3>Poisson-Angle Impérial</h3>
+        </div>
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1507578232980-02b12d3bbd30?auto=format&fit=crop&w=500&q=80" alt="Poisson exotique 4">
+            <h3>Poisson-Dragon Bleu</h3>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2>Contactez-nous dès aujourd'hui</h2>
+        <a href="mailto:mol.fish.company@gmail.com?subject=Contact%20Mol-Fish&body=Bonjour%20Mol-Fish,%20je%20souhaite%20plus%20d'informations%20sur%20vos%20poissons%20rares.">✉️ Nous écrire par email</a>
+    </section>
+
+    <footer>
+        <div class="socials">
+            <a href="https://www.facebook.com/mol-fish" target="_blank">Facebook</a> |
+            <a href="https://www.instagram.com/molfish_officiel" target="_blank">Instagram</a> |
+            <a href="https://www.linkedin.com/company/mol-fish" target="_blank">LinkedIn</a>
+        </div>
+        <p>📍 Siège : Kinshasa, RDC | 📞 +243 970 000 000</p>
+        <p>© 2025 Mol-Fish. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
