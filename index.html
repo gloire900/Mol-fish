@@ -5,31 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mol-Fish | Poissons rares & exotiques</title>
   <style>
-    /* Reset & styles de base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
       font-family: 'Poppins', sans-serif;
       color: #1f2937;
       background-color: #f8fafc;
       line-height: 1.6;
     }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
+    a {text-decoration: none; color: inherit;}
+    img {max-width: 100%; height: auto; display: block;}
 
-    /* Header + navigation */
+    /* NAVBAR */
     header {
-      background-color: #ffffff;
+      background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
@@ -43,9 +31,7 @@
       justify-content: space-between;
       padding: 15px;
     }
-    .nav-logo img {
-      width: 150px;
-    }
+    .nav-logo img {width: 150px;}
     nav ul {
       list-style: none;
       display: flex;
@@ -56,47 +42,87 @@
       font-weight: 500;
       transition: color 0.2s;
     }
-    nav ul li a:hover {
+    nav ul li a:hover {color: #0284c7;}
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
       color: #0284c7;
     }
 
-    /* Hero / section principale */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: white;
+        width: 200px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        text-align: right;
+        padding: 20px;
+      }
+      nav ul.active {display: flex;}
+      .menu-toggle {display: block;}
+    }
+
+    /* HERO SLIDER */
     .hero {
       position: relative;
+      height: 450px;
       overflow: hidden;
     }
-    .hero img {
+    .slide {
       width: 100%;
-      height: 400px;
-      object-fit: cover;
-      opacity: 0.85;
-    }
-    .hero .overlay {
+      height: 450px;
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      object-fit: cover;
     }
-    .hero .hero-content {
+    .slide.active {opacity: 1;}
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+    }
+    .hero-content {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: #ffffff;
+      color: #fff;
       text-align: center;
-      padding: 0 20px;
     }
-    .hero .hero-content h1 {
+    .hero-content h1 {
       font-size: 2.8rem;
       margin-bottom: 15px;
     }
-    .hero .hero-content p {
+    .hero-content p {
       font-size: 1.2rem;
     }
 
-    /* Section produits */
+    /* QUI SOMMES-NOUS */
+    .about {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .about h2 {
+      font-size: 2rem;
+      color: #0284c7;
+      margin-bottom: 20px;
+    }
+    .about p {
+      color: #475569;
+      font-size: 1.1rem;
+    }
+
+    /* PRODUITS */
     .produits-section {
       max-width: 1200px;
       margin: 60px auto;
@@ -125,21 +151,17 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
     .produit-card img {
-      display: block;
       width: 100%;
       height: 200px;
       object-fit: cover;
     }
-    .produit-card .card-body {
+    .produit-card h3 {
       padding: 15px;
-    }
-    .produit-card .card-body h3 {
       font-size: 1.2rem;
-      margin-bottom: 10px;
       color: #1e293b;
     }
 
-    /* Section contact */
+    /* CONTACT */
     .contact-section {
       background-color: #0284c7;
       color: white;
@@ -159,46 +181,42 @@
       font-weight: 600;
       transition: background-color 0.3s;
     }
-    .contact-section a.btn:hover {
-      background-color: #e2e8f0;
-    }
+    .contact-section a.btn:hover {background-color: #e2e8f0;}
 
-    /* Footer */
+    /* FOOTER */
     footer {
       background-color: #0f172a;
       color: #cbd5e1;
-      padding: 40px 20px;
-    }
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-    .footer-socials a {
-      margin: 0 10px;
-      color: #38bdf8;
-      font-size: 1.2rem;
-      transition: color 0.2s;
-    }
-    .footer-socials a:hover {
-      color: #facc15;
-    }
-    .footer-text {
+      padding: 50px 20px;
       text-align: center;
-      font-size: 0.9rem;
     }
-
-    @media (max-width: 600px) {
-      .hero .hero-content h1 {
-        font-size: 2rem;
-      }
-      .hero .hero-content p {
-        font-size: 1rem;
-      }
+    .footer-socials img {
+      width: 30px;
+      margin: 0 10px;
+      vertical-align: middle;
     }
+    .footer-text {margin-top: 15px; font-size: 0.9rem;}
+    .avis {
+      margin-top: 25px;
+    }
+    .avis input, .avis textarea {
+      width: 100%;
+      max-width: 400px;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+    }
+    .avis button {
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .avis button:hover {background: #0369a1;}
   </style>
 </head>
 <body>
@@ -208,74 +226,104 @@
       <div class="nav-logo">
         <a href="#"><img src="logo.png" alt="Mol-Fish Logo"></a>
       </div>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
       <nav>
-        <ul>
+        <ul id="nav-menu">
           <li><a href="#">Accueil</a></li>
           <li><a href="#produits">Nos Poissons</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="#">À propos</a></li>
+          <li><a href="#avis">Avis</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
+  <!-- SLIDER -->
   <div class="hero">
-    <img src="poisson01.jpg" alt="Poisson rare Mol-Fish">
+    <img class="slide active" src="poisson01.jpg" alt="Poisson rare">
+    <img class="slide" src="poisson02.jpg" alt="Poisson exotique">
+    <img class="slide" src="poisson03.jpg" alt="Poisson aquarium">
+    <img class="slide" src="poisson04.jpg" alt="Poisson rare">
     <div class="overlay"></div>
     <div class="hero-content">
       <h1>Mol-Fish</h1>
-      <p>Vente de poissons rares & exotiques – Fraîcheur garantie</p>
+      <p>Vente de poissons rares & exotiques – fraîcheur garantie 🐠</p>
     </div>
   </div>
 
+  <!-- QUI SOMMES-NOUS -->
+  <section class="about" id="about">
+    <h2>Qui sommes-nous ?</h2>
+    <p>Mol-Fish est une entreprise spécialisée dans la vente de poissons rares et exotiques. 
+    Notre mission est d’apporter aux aquariophiles du monde entier des espèces uniques, 
+    sélectionnées avec soin et respect des normes environnementales. 
+    Nous garantissons fraîcheur, qualité et authenticité à chaque livraison.</p>
+  </section>
+
+  <!-- PRODUITS -->
   <section class="produits-section" id="produits">
     <h2>Nos Poissons Rares</h2>
     <div class="produits-grid">
       <div class="produit-card">
         <img src="poisson01.jpg" alt="Poisson Mandarinfish">
-        <div class="card-body">
-          <h3>Poisson Mandarinfish</h3>
-        </div>
+        <h3>Poisson Mandarinfish</h3>
       </div>
       <div class="produit-card">
         <img src="poisson02.jpg" alt="Poisson-Clown Exotique">
-        <div class="card-body">
-          <h3>Poisson-Clown Exotique</h3>
-        </div>
+        <h3>Poisson-Clown Exotique</h3>
       </div>
       <div class="produit-card">
         <img src="poisson03.jpg" alt="Poisson-Angle Impérial">
-        <div class="card-body">
-          <h3>Poisson-Angle Impérial</h3>
-        </div>
+        <h3>Poisson-Angle Impérial</h3>
       </div>
       <div class="produit-card">
         <img src="poisson04.jpg" alt="Poisson-Dragon Bleu">
-        <div class="card-body">
-          <h3>Poisson-Dragon Bleu</h3>
-        </div>
+        <h3>Poisson-Dragon Bleu</h3>
       </div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <h2>Contactez-nous dès aujourd'hui</h2>
-    <a class="btn" href="mailto:mol.fish.company@gmail.com?subject=Contact%20Mol-Fish">Nous écrire</a>
+    <a class="btn" href="mailto:mol.fish.company@gmail.com?subject=Contact%20Mol-Fish">✉️ Nous écrire</a>
   </section>
 
-  <footer>
-    <div class="footer-container">
-      <div class="footer-socials">
-        <a href="https://www.facebook.com/mol-fish" target="_blank">Facebook</a>
-        <a href="https://www.instagram.com/molfish_officiel" target="_blank">Instagram</a>
-        <a href="https://www.linkedin.com/company/mol-fish" target="_blank">LinkedIn</a>
-      </div>
-      <div class="footer-text">
-        <p>📍 Siège : Kinshasa, RDC | 📞 +243 970 000 000</p>
-        <p>© 2025 Mol-Fish. Tous droits réservés.</p>
-      </div>
+  <!-- FOOTER -->
+  <footer id="avis">
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/mol-fish" target="_blank"><img src="fb.png" alt="Facebook"></a>
+      <a href="https://www.instagram.com/molfish_officiel" target="_blank"><img src="ig.png" alt="Instagram"></a>
+      <a href="https://www.linkedin.com/company/mol-fish" target="_blank"><img src="ln.png" alt="LinkedIn"></a>
+    </div>
+    <div class="footer-text">
+      <p>📍 Siège : Kinshasa, RDC | 📞 +243 970 000 000</p>
+      <p>© 2025 Mol-Fish. Tous droits réservés.</p>
+    </div>
+
+    <div class="avis">
+      <h3>📝 Laissez un avis</h3>
+      <input type="text" placeholder="Votre nom" required><br>
+      <textarea rows="3" placeholder="Votre avis..."></textarea><br>
+      <button>Envoyer</button>
     </div>
   </footer>
+
+  <script>
+    // Menu responsive
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('active'));
+
+    // Slider
+    let slides = document.querySelectorAll('.slide');
+    let index = 0;
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 4000);
+  </script>
 
 </body>
 </html>
