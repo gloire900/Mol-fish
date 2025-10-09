@@ -29,9 +29,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px;
+      padding: 10px 15px;
     }
-    .nav-logo img {width: 90px;}
+    .nav-logo img {
+      width: 90px;
+      height: auto;
+      border-radius: 50%;
+    }
     nav ul {
       list-style: none;
       display: flex;
@@ -224,7 +228,7 @@
   <header>
     <div class="nav-container">
       <div class="nav-logo">
-        <a href="#"><img src="logoMF.png" alt="Mol-Fish Logo"></a>
+        <a href="#"><img src="logoM.png" alt="Mol-Fish Logo"></a>
       </div>
       <div class="menu-toggle" id="menu-toggle">☰</div>
       <nav>
@@ -315,7 +319,7 @@
     const menu = document.getElementById('nav-menu');
     toggle.addEventListener('click', () => menu.classList.toggle('active'));
 
-    // Slider
+    // Slider automatique
     let slides = document.querySelectorAll('.slide');
     let index = 0;
     setInterval(() => {
@@ -327,8 +331,3 @@
 
 </body>
 </html>
-
-
-
-
-
