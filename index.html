@@ -13,7 +13,7 @@
       line-height: 1.6;
     }
     a {text-decoration: none; color: inherit;}
-    img {max-width: 100%; height: auto; display: block;}
+    img, video {max-width: 100%; height: auto; display: block;}
 
     /* NAVBAR */
     header {
@@ -154,7 +154,7 @@
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-    .produit-card img {
+    .produit-card img, .produit-card video {
       width: 100%;
       height: 200px;
       object-fit: cover;
@@ -269,11 +269,14 @@
     <h2>Nos Poissons</h2>
     <div class="produits-grid">
       <div class="produit-card">
-        <img src="poisson01.jpg" alt="Poisson Mandarinfish">
-        <h3>Poisson Mandarinfish</h3>
+        <video autoplay muted loop playsinline>
+          <source src="video01.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la lecture vidéo.
+        </video>
+        <h3>Poisson Mandarinfish (Vidéo)</h3>
       </div>
       <div class="produit-card">
-        <img src="poisson02.jpeg" alt="Poisson-Clown Exotique">
+        <img src="poisson06.jpeg" alt="Poisson-Clown Exotique">
         <h3>Poisson-Clown Exotique</h3>
       </div>
       <div class="produit-card">
@@ -331,4 +334,3 @@
 
 </body>
 </html>
-
