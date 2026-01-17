@@ -3,355 +3,331 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mol-Fish | Poissons rares & exotiques</title>
+  <title>Mol-Fish | Poissons rares & exotiques d’exception</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #1f2937;
-      background-color: #f8fafc;
-      line-height: 1.6;
-    }
-    a {text-decoration: none; color: inherit;}
-    img, video {max-width: 100%; height: auto; display: block;}
+    /* === AOS LIGHT === */
+    [data-animate]{opacity:0;transform:translateY(40px);transition:all .9s ease}
+    [data-animate].active{opacity:1;transform:none}
 
-    /* NAVBAR */
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .nav-container {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 15px;
-    }
-    .nav-logo img {
-      width: 75px;
-      height: auto;
-      border-radius: 50%;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    nav ul li a {
-      color: #4b5563;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    nav ul li a:hover {color: #0284c7;}
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #0284c7;
+    :root{
+      --primary:#0284c7;
+      --primary-dark:#0369a1;
+      --dark:#0b1220;
+      --gray:#475569;
+      --light:#f8fafc;
     }
 
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background: white;
-        width: 200px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        text-align: right;
-        padding: 20px;
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--light);
+      color:#1f2937;
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+    }
+    img,video{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    /* ================= HEADER ================= */
+    header{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid #e5e7eb;
+    }
+    .nav{
+      max-width:1250px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 22px;
+    }
+    .logo img{width:72px;border-radius:50%}
+    nav ul{list-style:none;display:flex;gap:34px}
+    nav a{
+      font-weight:500;
+      font-size:.95rem;
+      color:#1e293b;
+      position:relative;
+      letter-spacing:.3px;
+    }
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;bottom:-8px;
+      width:0;height:2px;
+      background:var(--primary);
+      transition:.35s ease;
+    }
+    nav a:hover::after{width:100%}
+    .menu-toggle{display:none;font-size:2rem;color:var(--primary);cursor:pointer}
+
+    @media(max-width:768px){
+      nav ul{
+        display:none;
+        position:absolute;
+        top:80px;right:20px;
+        background:#fff;
+        flex-direction:column;
+        width:240px;
+        padding:26px;
+        border-radius:20px;
+        box-shadow:0 25px 60px rgba(0,0,0,.2);
       }
-      nav ul.active {display: flex;}
-      .menu-toggle {display: block;}
+      nav ul.active{display:flex}
+      .menu-toggle{display:block}
     }
 
-    /* HERO SLIDER */
-    .hero {
-      position: relative;
-      height: 450px;
-      overflow: hidden;
+    /* ================= HERO ================= */
+    .hero{
+      position:relative;
+      height:90vh;
+      min-height:520px;
+      overflow:hidden;
     }
-    .slide {
-      width: 100%;
-      height: 450px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      object-fit: cover;
+    .hero img{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      object-fit:cover;
+      opacity:0;
+      transform:scale(1.05);
+      transition:opacity 1.4s ease, transform 6s linear;
     }
-    .slide.active {opacity: 1;}
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
+    .hero img.active{opacity:1;transform:scale(1)}
+    .hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.7));
     }
-    .hero-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      text-align: center;
+    .hero-content{
+      position:absolute;inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      z-index:2;
+      padding:20px;
     }
-    .hero-content h1 {
-      font-size: 2.8rem;
-      margin-bottom: 15px;
+    .hero-content h1{
+      font-size:clamp(2.6rem,6vw,4rem);
+      font-weight:700;
+      margin-bottom:18px;
+      letter-spacing:2px;
+      text-transform:uppercase;
     }
-    .hero-content p {
-      font-size: 1.2rem;
-    }
-
-    /* QUI SOMMES-NOUS */
-    .about {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
-      text-align: center;
-    }
-    .about h2 {
-      font-size: 2rem;
-      color: #0284c7;
-      margin-bottom: 20px;
-    }
-    .about p {
-      color: #475569;
-      font-size: 1.1rem;
+    .hero-content p{
+      font-size:clamp(1.05rem,2.5vw,1.35rem);
+      max-width:720px;
+      margin:auto;
+      opacity:.95;
     }
 
-    /* PRODUITS */
-    .produits-section {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 0 20px;
+    /* ================= ABOUT ================= */
+    .about{
+      max-width:1200px;
+      margin:110px auto;
+      padding:0 22px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:70px;
+      align-items:center;
     }
-    .produits-section h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2rem;
-      color: #0f172a;
+    .about h2{
+      color:var(--primary);
+      font-size:2.6rem;
+      margin-bottom:25px;
     }
-    .produits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+    .about p{color:var(--gray);font-size:1.1rem}
+    .about img{
+      border-radius:28px;
+      box-shadow:0 30px 60px rgba(0,0,0,.18)
     }
-    .produit-card {
-      background-color: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
+    @media(max-width:900px){.about{grid-template-columns:1fr}}
+
+    /* ================= PRODUCTS ================= */
+    .products{
+      background:#fff;
+      padding:110px 22px;
     }
-    .produit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    .products h2{
+      text-align:center;
+      font-size:2.8rem;
+      margin-bottom:70px;
+      color:var(--dark);
     }
-    .produit-card img, .produit-card video {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+    .grid{
+      max-width:1250px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:45px;
     }
-    .produit-card h3 {
-      padding: 15px;
-      font-size: 1.2rem;
-      color: #1e293b;
+    .card{
+      background:#fff;
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:0 25px 55px rgba(0,0,0,.1);
+      transition:.45s ease;
+    }
+    .card:hover{transform:translateY(-12px)}
+    .card img,.card video{height:240px;object-fit:cover}
+    .card h3{
+      padding:22px;
+      font-size:1.2rem;
+      font-weight:600;
+      color:#0f172a;
     }
 
-    /* CONTACT */
-    .contact-section {
-      background-color: #0284c7;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
+    /* ================= CONTACT ================= */
+    .contact{
+      background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+      color:#fff;
+      padding:120px 22px;
+      text-align:center;
     }
-    .contact-section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+    .contact h2{font-size:2.8rem;margin-bottom:25px}
+    .contact p{font-size:1.05rem;opacity:.95}
+    .contact a{
+      display:inline-block;
+      background:#fff;
+      color:var(--primary);
+      padding:18px 46px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:1.15rem;
+      margin-top:30px;
+      transition:.35s ease;
     }
-    .contact-section a.btn {
-      background-color: #ffffff;
-      color: #0284c7;
-      padding: 15px 30px;
-      border-radius: 999px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      transition: background-color 0.3s;
-    }
-    .contact-section a.btn:hover {background-color: #e2e8f0;}
+    .contact a:hover{transform:scale(1.08)}
 
-    /* FOOTER */
-    footer {
-      background-color: #0f172a;
-      color: #cbd5e1;
-      padding: 50px 20px;
-      text-align: center;
+    /* ================= FOOTER ================= */
+    footer{
+      background:var(--dark);
+      color:#cbd5e1;
+      padding:90px 22px;
+      text-align:center;
     }
-    .footer-socials img {
-      width: 30px;
-      margin: 0 10px;
-      vertical-align: middle;
-    }
-    .footer-text {margin-top: 15px; font-size: 0.9rem;}
-    .avis {
-      margin-top: 25px;
-    }
-    .avis input, .avis textarea {
-      width: 100%;
-      max-width: 400px;
-      margin: 5px 0;
-      padding: 8px;
-      border-radius: 8px;
-      border: none;
-    }
-    .avis button {
-      background: #0284c7;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .avis button:hover {background: #0369a1;}
+    .socials img{width:34px;margin:0 14px;opacity:.85}
+    footer p{margin-top:14px;font-size:.95rem;opacity:.85}
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="nav-container">
-      <div class="nav-logo">
-        <a href="#"><img src="logoMF.png" alt="Mol-Fish Logo"></a>
-      </div>
-      <div class="menu-toggle" id="menu-toggle">☰</div>
-      <nav>
-        <ul id="nav-menu">
-          <li><a href="#">Accueil</a></li>
-          <li><a href="#produits">Nos Poissons</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#avis">Avis</a></li>
-        </ul>
-      </nav>
+<header>
+  <div class="nav">
+    <div class="lang-switch">
+      <button id="frBtn">FR</button>
+      <button id="enBtn">EN</button>
     </div>
-  </header>
+    <div class="logo"><img src="logoMF.png" alt="Mol-Fish"></div>
+    <div class="menu-toggle" id="menu">☰</div>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#produits">Nos espèces</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <!-- SLIDER -->
-  <div class="hero">
-    <img class="slide active" src="photo10.jpg" alt="Poisson rare">
-    <img class="slide" src="photo11.jpg" alt="Poisson exotique">
-    <img class="slide" src="photo12.jpg" alt="Poisson aquarium">
-    <img class="slide" src="photo13.jpg" alt="Poisson rare">
-    <img class="slide" src="photo14.jpg" alt="Poisson rare">
-    <img class="slide" src="photo15.jpg" alt="Poisson rare">
-    <div class="overlay"></div>
-    <div class="hero-content">
+<section class="hero" data-animate>
+  <img src="photo10.jpg" class="active">
+  <img src="photo11.jpg">
+  <img src="photo12.jpg">
+  <img src="photo13.jpg">
+  <div class="hero-content">
+    <div>
       <h1>Mol-Fish</h1>
-      <p>Vente de poissons exotiques – fraîcheur garantie 🐠</p>
+      <p>La référence mondiale en poissons exotiques rares, destinée aux aquariophiles d’élite.</p>
     </div>
   </div>
+</section>
 
-  <!-- QUI SOMMES-NOUS -->
-  <section class="about" id="about">
-    <h2>Qui sommes-nous ?</h2>
-    <p>Mol-Fish est une entreprise spécialisée dans la vente de poissons exotiques. 
-    Notre mission est d’apporter aux aquariophiles du monde entier des espèces uniques, 
-    sélectionnées avec soin et respect des normes environnementales. 
-    Nous garantissons fraîcheur, qualité et authenticité à chaque livraison.</p>
-  </section>
+<section class="about" data-animate>
+  <div>
+    <h2>L’excellence aquatique mondiale</h2>
+    <p>
+      Mol-Fish est une entreprise internationale spécialisée dans la sélection rigoureuse,
+      l’élevage contrôlé et la distribution de poissons exotiques rares. Nous collaborons
+      avec des experts et partenaires certifiés afin de garantir des espèces saines,
+      authentiques et respectueuses des normes environnementales les plus strictes.
+    </p>
+  </div>
+  <img src="photo14.jpg" alt="Aquarium professionnel haut de gamme">
+</section>
 
-  <!-- PRODUITS -->
-  <section class="produits-section" id="produits">
-    <h2>Nos Poissons</h2>
-    <div class="produits-grid">
-      <div class="produit-card">
-        <video autoplay muted loop playsinline>
-          <source src="video01.mp4" type="video/mp4">
-          Votre navigateur ne supporte pas la lecture vidéo.
-        </video>
-        <h3>TETRAODON SCHOUTEDENI (Vidéo)</h3>
-      </div>
-      <div class="produit-card">
-        <img src="poisson06.png" alt="Poisson-Clown Exotique">
-        <h3>TETRAODON MBU</h3>
-      </div>
-      <div class="produit-card">
-        <img src="photo10.jpg" alt="Poisson-Clown Exotique">
-        <h3>TETRAODON MBU</h3>
-      </div>
-      <div class="produit-card">
-        <img src="photo11.jpg" alt="Poisson-Clown Exotique">
-        <h3>TETRAODON MBU</h3>
-      </div>
-      <div class="produit-card">
-        <img src="photo15.jpg" alt="Poisson-Angle Impérial">
-        <h3>Poisson-Angle Impérial</h3>
-      </div>
-      <div class="produit-card">
-        <video autoplay muted loop playsinline>
-          <source src="video01.mp4" type="video/mp4">
-          Votre navigateur ne supporte pas la lecture vidéo.
-        </video>
-        <h3>TETRAODON SCHOUTEDENI (Vidéo)</h3>
-      </div>
-  </section>
+<section class="products" data-animate" id="produits">
+  <h2>Nos espèces d’exception</h2>
+  <div class="grid">
+    <div class="card"><video autoplay muted loop playsinline src="video01.mp4"></video><h3>Tetraodon Schoutedeni</h3></div>
+    <div class="card"><img src="poisson06.png"><h3>Tetraodon Mbu</h3></div>
+    <div class="card"><img src="photo10.jpg"><h3>Tetraodon Mbu</h3></div>
+    <div class="card"><img src="photo11.jpg"><h3>Tetraodon Mbu</h3></div>
+    <div class="card"><img src="photo15.jpg"><h3>Poisson-Ange Impérial</h3></div>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section class="contact-section" id="contact">
-    <h2>Contactez-nous dès aujourd'hui</h2>
-    <a class="btn" href="mailto:molfishcompany@gmail.com?subject=Contact%20Mol-Fish">✉️ Nous écrire</a>
-  </section>
+<section class="contact" data-animate" id="contact">
+  <h2>Contactez Mol-Fish</h2>
+  <p>Commandes spéciales, export international ou partenariats professionnels.</p>
+  <a href="mailto:molfishcompany@gmail.com">Nous contacter</a>
+</section>
 
-  <!-- FOOTER -->
-  <footer id="avis">
-    <div class="footer-socials">
-      <a href="https://www.facebook.com/mol-fish" target="_blank"><img src="f.jpg" alt="Facebook"></a>
-      <a href="https://www.instagram.com/molfishcompany" target="_blank"><img src="Inst.jpg" alt="Instagram"></a>
-      <a href="https://www.linkedin.com/mol-fish" target="_blank"><img src="lk.png" alt="LinkedIn"></a>
-    </div>
-    <div class="footer-text">
-      <p>📍 Siège : Kinshasa, RDC | 📞 +243831237709</p>
-      <p>© 2025 Mol-Fish. Tous droits réservés.</p>
-    </div>
+<footer>
+  <div class="socials">
+    <img src="f.jpg"><img src="Inst.jpg"><img src="lk.png">
+  </div>
+  <p>Kinshasa – RDC | +243 831 237 709</p>
+  <p>© 2025 Mol-Fish · Tous droits réservés</p>
+</footer>
 
-    <div class="avis">
-      <h3>📝 Laissez un avis</h3>
-      <input type="text" placeholder="Votre nom" required><br>
-      <textarea rows="3" placeholder="Votre avis..."></textarea><br>
-      <button>Envoyer</button>
-    </div>
-  </footer>
+<script>
+  /* === LANG SWITCH === */
+  const fr={
+    hero:"Référence mondiale en poissons exotiques rares, sélectionnés avec exigence et livrés avec soin.",
+    aboutTitle:"L’excellence aquatique",
+    contact:"Contactez Mol-Fish"
+  };
+  const en={
+    hero:"Global reference in rare exotic fish, carefully selected and delivered worldwide.",
+    aboutTitle:"Aquatic excellence",
+    contact:"Contact Mol-Fish"
+  };
+  function switchLang(l){
+    document.querySelector('.hero-content p').innerText=l.hero;
+    document.querySelector('.about h2').innerText=l.aboutTitle;
+    document.querySelector('.contact h2').innerText=l.contact;
+  }
+  frBtn.onclick=()=>switchLang(fr);
+  enBtn.onclick=()=>switchLang(en);
 
-  <script>
-    // Menu responsive
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('nav-menu');
-    toggle.addEventListener('click', () => menu.classList.toggle('active'));
+  /* === SCROLL ANIMATION === */
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('active')})
+  },{threshold:.2});
+  document.querySelectorAll('[data-animate]').forEach(el=>obs.observe(el));
 
-    // Slider automatique
-    let slides = document.querySelectorAll('.slide');
-    let index = 0;
-    setInterval(() => {
-      slides[index].classList.remove('active');
-      index = (index + 1) % slides.length;
-      slides[index].classList.add('active');
-    }, 4000);
-  </script>
+  const menu=document.getElementById('menu');
+  const links=document.getElementById('nav-links');
+  menu.onclick=()=>links.classList.toggle('active');
+
+  const slides=document.querySelectorAll('.hero img');
+  let i=0;
+  setInterval(()=>{
+    slides[i].classList.remove('active');
+    i=(i+1)%slides.length;
+    slides[i].classList.add('active');
+  },5000);
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
